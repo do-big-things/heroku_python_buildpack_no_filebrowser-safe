@@ -23,7 +23,7 @@ set -e
 
 puts-cmd "pip uninstall filebrowser-safe"
 set +e
-/app/.heroku/python/bin/pip uninstall filebrowser-safe --exists-action=w --src=/app/.heroku/src --disable-pip-version-check --no-cache-dir 2>&1 | tee $WARNINGS_LOG | cleanup | indent
+/app/.heroku/python/bin/pip uninstall filebrowser-safe
 PIP_STATUS="${PIPESTATUS[0]}"
 set -e
 
