@@ -1,6 +1,5 @@
 # Install dependencies with Pip.
 puts-cmd "pip install -r requirements.txt"
-puts-cmd "pip uninstall filebrowser-safe"
 
 set +e
 # delete any existing egg links, to uninstall exisisting installations.
@@ -19,6 +18,12 @@ set -e
 
 set +e
 /app/.heroku/python/bin/pip install -r $BUILD_DIR/requirements.txt --exists-action=w --src=/app/.heroku/src --disable-pip-version-check --no-cache-dir 2>&1 | tee $WARNINGS_LOG | cleanup | indent
+PIP_STATUS="${PIPESTATUS[0]}"
+set -e
+
+puts-cmd "pip uninstall filebrowser-safe"
+set +e
+/app/.heroku/python/bin/pip uninstall filebrowser-safe --exists-action=w --src=/app/.heroku/src --disable-pip-version-check --no-cache-dir 2>&1 | tee $WARNINGS_LOG | cleanup | indent
 PIP_STATUS="${PIPESTATUS[0]}"
 set -e
 
